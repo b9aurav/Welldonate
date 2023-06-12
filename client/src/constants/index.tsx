@@ -1,4 +1,4 @@
-  import { BsFillGrid1X2Fill, BsFillMegaphoneFill, BsCashStack, BsFillPrinterFill, BsPersonCircle, BsBoxArrowInRight } from "react-icons/bs";
+  import { BsFillGrid1X2Fill, BsFillMegaphoneFill, BsCashStack, BsFillPrinterFill, BsPersonCircle } from "react-icons/bs";
 
   interface navElement {
       name: string,

@@ -16,7 +16,7 @@ type MenuItemProps = {
 }
 
 const MenuItem = ( { styles, name, title, icon, isActive, disabled, onClick}: MenuItemProps): JSX.Element => ( 
-  <div className={`w-[215px] h-[48px] rounded-[15px] ${isActive && isActive === name && 'bg-[#F8F9FA]'} flex items-center ${!disabled && 'cursor-pointer'} ${styles}`}
+  <div className={`w-[215px] h-[48px] rounded-[15px] ${isActive && isActive === name && 'bg-[#F8F9FA]'} flex items-center ${!disabled && 'cursor-pointer'} ${disabled && 'cursor-not-allowed'} ${styles}`}
     onClick={onClick}
   >
     {!isActive ? (
