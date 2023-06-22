@@ -1,10 +1,16 @@
 import React from 'react'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 
 type Props = {}
 
 const Profile = (props: Props) => {
   return (
-    <div>Profile</div>
+    <HelmetProvider>
+      <Helmet>
+        <title>Welldonate | Profile</title>
+      </Helmet>
+      <div>Profile</div>
+    </HelmetProvider>
   )
 }
 
