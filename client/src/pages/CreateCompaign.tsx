@@ -2,17 +2,22 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
 import { BiMoney } from "react-icons/bi";
+import { useStateContext } from "../context";
 import { BsFillMegaphoneFill } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import { PrimaryButton } from "../components";
 import FormField from "../components/FormField";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { SmartContract } from "@thirdweb-dev/react";
+import { StateContextType } from "../context/ContextTypes";
+import { isImageExists } from "../utils";
 
 type Props = {};
 
 const CreateCampaign = (props: Props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const { createCampaign } = useStateContext() as StateContextType;
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -23,8 +28,19 @@ const CreateCampaign = (props: Props) => {
   const handleFormFieldChange = (fieldName: string, e: React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [fieldName]: e.target.value })
   }
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    isImageExists(form.image, async (exists) => {
+      if (exists) {
+        setIsLoading(true);
+        await createCampaign({...form, goal: ethers.utils.parseUnits(form.goal, 18), image: form.image.split('|')});
+        setIsLoading(false);
+        navigate('/')
+      } else {
+        alert('Image is not valid!');
+        setForm({ ...form, image: '' })
+      }
+    });
     console.log(form);
   };
 

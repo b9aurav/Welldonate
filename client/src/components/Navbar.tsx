@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useStateContext } from "../context";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import PrimaryButton from "./PrimaryButton";
 import { navlinks } from "../constants";
 import { BsSearch, BsFillPlusSquareFill } from "react-icons/bs";
 import { FaWallet } from "react-icons/fa";
 import { BiMenu } from "react-icons/bi";
+import { StateContextType } from "../context/ContextTypes";
 
 type Props = {};
 
@@ -12,7 +14,7 @@ const Navbar = (props: Props) => {
   const navigate: NavigateFunction = useNavigate();
   const [isActive, setIsActive] = useState("dashboard");
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const address = "";
+  const { connect, address } = useStateContext() as StateContextType
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -37,7 +39,7 @@ const Navbar = (props: Props) => {
           Icon={address ? BsFillPlusSquareFill : FaWallet}
           onClick={() => {
             if (address) navigate("create-campaign");
-            // else connect()
+            else connect()
           }}
         ></PrimaryButton>
       </div>
@@ -90,7 +92,7 @@ const Navbar = (props: Props) => {
             Icon={address ? BsFillPlusSquareFill : FaWallet}
             onClick={() => {
               if (address) navigate("create-campaign");
-              // else 'connect()'
+              else connect();
             }}
           ></PrimaryButton>
         </div>

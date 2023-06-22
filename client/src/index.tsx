@@ -2,6 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom"
 import { ThirdwebProvider } from "@thirdweb-dev/react"
+import { StateContextProvider } from "./context";
 import App from "./App";
 import "./index.css"
 
@@ -10,7 +11,9 @@ const root = createRoot(document.getElementById("root")!);
 root.render(
     <ThirdwebProvider activeChain={"goerli"} >
         <Router>
-            <App />
+            <StateContextProvider>
+                <App />
+            </StateContextProvider>
         </Router>
     </ThirdwebProvider>
 );
