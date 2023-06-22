@@ -1,11 +1,89 @@
-import React from 'react'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ethers } from "ethers";
+import { BiMoney } from "react-icons/bi";
+import { BsFillMegaphoneFill } from "react-icons/bs";
+import { AiOutlinePlus } from "react-icons/ai";
+import { PrimaryButton } from "../components";
+import FormField from "../components/FormField";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
-type Props = {}
+type Props = {};
 
 const CreateCampaign = (props: Props) => {
-  return (
-    <div>CreateCampaign</div>
-  )
-}
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    description: "",
+    goal: "",
+    image: "",
+  });
 
-export default CreateCampaign
+  const handleFormFieldChange = (fieldName: string, e: React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [fieldName]: e.target.value })
+  }
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(form);
+  };
+
+  return (
+    <HelmetProvider>
+      <Helmet>
+        <title>Welldonate | Create Campaign</title>
+      </Helmet>
+      <div className="bg-[#CED4DA] flex justify-center items-center shadow-lg flex-col rounded-[15px] sm:p-10 p-4">
+        {isLoading && "Loader"}
+        <div className="justify-flex justify-center shadow-lg items-center p-[16px] w-[100%] bg-[#E9ECEF] rounded-[15px]">
+          <h3 className="sm:text-[25px] text-[18px] text-[#495057] leading-[38px] text-center justify-center items-center flex">
+            <BsFillMegaphoneFill className="inline mx-2" />
+            <b>CREATE CAMPAIGN</b>
+          </h3>
+        </div>
+        <form
+          onSubmit={handleSubmit}
+          className="w-full mt-[40px] flex flex-col gap-[30px]"
+        >
+          <div className="flex flex-wrap gap-[15px]">
+            <FormField
+              labelName="Campaign Name"
+              inputType="text"
+              value={form.name}
+              handleInputBoxChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFormFieldChange('name', e)}
+            ></FormField>
+            <FormField
+              labelName="Goal"
+              inputType="number"
+              value={form.goal}
+              handleInputBoxChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFormFieldChange('goal', e)}
+            ></FormField>
+            <FormField
+              labelName="Image Link"
+              inputType="text"
+              value={form.image}
+              handleInputBoxChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFormFieldChange('image', e)}
+            ></FormField>
+          </div>
+          <FormField
+            labelName="Description"
+            inputType="text"
+            isTextArea
+            value={form.description}
+            handleTextAreaChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleFormFieldChange('description', e)}
+          ></FormField>
+          <div className="flex justify-end items-end">
+            <PrimaryButton
+              buttonType="submit"
+              title="CREATE"
+              Icon={AiOutlinePlus}
+              styles="bg-[#343A40]"
+            ></PrimaryButton>
+          </div>
+        </form>
+      </div>
+    </HelmetProvider>
+  );
+};
+
+export default CreateCampaign;
