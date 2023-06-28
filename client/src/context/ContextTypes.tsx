@@ -15,6 +15,7 @@ interface StateContextType {
     readonly connect: (connectOptions?: { chainId?: number | undefined } | undefined) => Promise<MetaMaskWallet>,
     readonly getCampaigns: () => Promise<any[]>
     readonly createCampaign: (form: CampaignFormProp) => Promise<void>
+    readonly getUserCampaigns: () => Promise<any[]>
 };
 
 export type { CampaignFormProp, StateContextType }

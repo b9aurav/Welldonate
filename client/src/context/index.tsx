@@ -43,13 +43,20 @@ export const StateContextProvider = ({ children }: Props) => {
         return parsedCampaigns;
     }
 
+    const getUserCampaigns = async () => {
+        const campaigns: any[] = await contract?.call('getCampaigns');
+        const filteredCampaigns: any[] = campaigns.filter((campaign) => campaign.owner === address)
+        return filteredCampaigns;
+    }
+
     return (
         <StateContext.Provider value={{
             address,
             contract,
             connect,
             getCampaigns,
-            createCampaign: publishCampaign
+            createCampaign: publishCampaign,
+            getUserCampaigns
         }}>
             {children}
         </StateContext.Provider>
