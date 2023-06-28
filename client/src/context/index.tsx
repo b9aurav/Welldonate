@@ -25,8 +25,22 @@ export const StateContextProvider = ({ children }: Props) => {
             ])
             console.log('Success', data);
         } catch (error) {
-            console.log('Success', error);
+            console.log('Failed', error);
         }
+    }
+
+    const getCampaigns = async () => {
+        const campaigns: any[] = await contract?.call('getCampaigns');
+        const parsedCampaigns = campaigns.map((campaign, index) => ({
+            campaignCreator: campaign.campaignCreator,
+            campaignName: campaign.campaignName,
+            campaignDescription: campaign.campaignDescription,
+            fundraisingGoal: campaign.fundraisingGoal,
+            currentFundsRaised: campaign.currentFundsRaised,
+            mediaContent: campaign.mediaContent,
+            id: index
+        }));
+        return parsedCampaigns;
     }
 
     return (
@@ -34,6 +48,7 @@ export const StateContextProvider = ({ children }: Props) => {
             address,
             contract,
             connect,
+            getCampaigns,
             createCampaign: publishCampaign
         }}>
             {children}
