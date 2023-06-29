@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import CampaignCard from './CampaignCard'
+import Loader from './Loader'
 
 type Props = {
     title: string,
@@ -18,7 +19,7 @@ const ShowCampaigns = ( { title, isLoading, campaigns }: Props): JSX.Element => 
     <div>
         <h1 className='font-semibold text-[18px] text-[#343A40]'>{title} ({campaigns.length})</h1>
         <div className='flex flex-wrap mt-[20px] gap-[26px]'>
-            {isLoading && "Loader"}
+            {isLoading && <Loader></Loader>}
 
             {!isLoading && campaigns.length === 0 && (
                 <p className='font-semibold text-[14px] text-[#495057] leading-[30px]'>No campaigns available.</p>

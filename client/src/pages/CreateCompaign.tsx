@@ -5,7 +5,7 @@ import { BiMoney } from "react-icons/bi";
 import { useStateContext } from "../context";
 import { BsFillMegaphoneFill } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
-import { PrimaryButton } from "../components";
+import { Loader, PrimaryButton } from "../components";
 import FormField from "../components/FormField";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { SmartContract } from "@thirdweb-dev/react";
@@ -49,7 +49,7 @@ const CreateCampaign = (props: Props) => {
         <title>Welldonate | Create Campaign</title>
       </Helmet>
       <div className="bg-[#CED4DA] flex justify-center items-center shadow-lg flex-col rounded-[15px] sm:p-10 p-4">
-        {isLoading && "Loader"}
+        {isLoading && <Loader></Loader>}
         <div className="justify-flex justify-center shadow-lg items-center p-[16px] w-[100%] bg-[#E9ECEF] rounded-[15px]">
           <h3 className="sm:text-[25px] text-[18px] text-[#495057] leading-[38px] text-center justify-center items-center flex">
             <BsFillMegaphoneFill className="inline mx-2" />

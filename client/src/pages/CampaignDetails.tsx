@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { BigNumber, ethers } from "ethers";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import { useStateContext } from "../context";
-import { PrimaryButton, CountBox, FormField } from "../components";
+import { PrimaryButton, CountBox, Loader } from "../components";
 import { calculatePercentage } from "../utils";
 import { FaUserCircle } from "react-icons/fa";
 import { FcDonate } from "react-icons/fc"
@@ -41,7 +41,7 @@ const CampaignDetails = (props: Props) => {
           <title>Welldonate | Profile</title>
         </Helmet>
         <div className="bg-[#CED4DA] flex justify-center items-center shadow-lg flex-col rounded-[15px] sm:p-10 p-4">
-          {isLoading && "Loader"}
+          {isLoading && <Loader></Loader>}
           <div className="justify-flex justify-center shadow-lg items-center p-[16px] w-[100%] bg-[#E9ECEF] rounded-[15px]">
             <div className="flex-1 flex-col">
               <img
