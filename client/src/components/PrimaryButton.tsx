@@ -8,8 +8,6 @@ type Props = {
   onClick?:React.MouseEventHandler<HTMLButtonElement>
 }
 
-const Icon: React.FC = () => <h2>This is a child component</h2>
-
 const PrimaryButton = ( { styles, buttonType, title, Icon, onClick }: Props): JSX.Element => {
   return (
     <button type={buttonType} className={styles + ' hover:bg-[#212529] hover:shadow-2xl transition-all duration-500 flex items-center p-2 rounded-[15px]'} onClick={onClick}>

@@ -35,6 +35,7 @@ const FormField = ( { labelName, inputType, value, isTextArea, handleInputBoxCha
             onChange={handleInputBoxChange}
             type={inputType}
             step="0.1"
+            min={0}
             className="w-full p-[15px] outline-none border-[1px] border-[#343A40] bg-[#E9ECEF] text-[16px] rounded-[15px] text-[#495057]"
           ></input>
         )}

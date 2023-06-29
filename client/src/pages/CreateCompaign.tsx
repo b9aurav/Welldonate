@@ -41,7 +41,6 @@ const CreateCampaign = (props: Props) => {
         setForm({ ...form, image: '' })
       }
     });
-    console.log(form);
   };
 
   return (
