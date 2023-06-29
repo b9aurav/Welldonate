@@ -11,8 +11,7 @@ type Props = {
 const ShowCampaigns = ( { title, isLoading, campaigns }: Props): JSX.Element => {
   const navigate = useNavigate();
   const viewCampaign = (campaign: any) => {
-    console.log(campaign);
-    navigate(`/campaign-details/${campaign.title}`, { state: campaign })
+    navigate(`/campaign-details/${campaign.campaignName}`, { state: campaign })
   }
 
   return (
@@ -27,7 +26,7 @@ const ShowCampaigns = ( { title, isLoading, campaigns }: Props): JSX.Element => 
 
             {!isLoading && campaigns.length > 0 && campaigns.map((campaign) => 
                 <CampaignCard 
-                    key={campaign.id} 
+                    key={campaign.campaignId} 
                     {...campaign}
                     onClick={() => viewCampaign(campaign)}
                 ></CampaignCard>)}

@@ -18,7 +18,7 @@ const App = (props: Props) => {
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/profile' element={<Profile />}></Route>
                 <Route path='/create-campaign' element={<CreateCompaign />}></Route>
-                <Route path='/campaign-details' element={<CampaignDetails />}></Route>
+                <Route path='/campaign-details/:id' element={<CampaignDetails />}></Route>
             </Routes>
         </div>
     </div>

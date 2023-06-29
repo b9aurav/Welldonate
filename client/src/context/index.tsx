@@ -1,6 +1,6 @@
 import React, { useContext, createContext, ReactNode } from 'react'
 import { useAddress, useContract, useMetamask, useContractWrite, SmartContract } from '@thirdweb-dev/react'
-import { ethers } from 'ethers'
+import { BigNumber, ethers } from 'ethers'
 import { StateContextType, CampaignFormProp } from './ContextTypes';
 
 interface Props {
@@ -38,7 +38,7 @@ export const StateContextProvider = ({ children }: Props) => {
             fundraisingGoal: campaign.fundraisingGoal,
             currentFundsRaised: campaign.currentFundsRaised,
             mediaContent: campaign.mediaContent,
-            id: index
+            campaignId: campaign.campaignId
         }));
         return parsedCampaigns;
     }
@@ -49,6 +49,26 @@ export const StateContextProvider = ({ children }: Props) => {
         return filteredCampaigns;
     }
 
+    const donate = async (pID: any, amount: any) => {
+        const data = await contract?.call('donateToCampaign', [pID], {value: ethers.utils.parseEther(amount)});
+        return data;
+    }
+
+    const getDonations = async (pID: any) => {
+        const donations: any[] = await contract?.call('getDonors', [pID])
+        const noOfDonations = donations.length;
+
+        const parsedDonations = [];
+
+        for(let i = 0; i < noOfDonations; i++) {
+            parsedDonations.push({
+                donator: donations[i],
+                donation: ethers.utils.formatEther(donations[i].toString())
+            })
+        }
+        return parsedDonations;
+    }
+
     return (
         <StateContext.Provider value={{
             address,
@@ -56,7 +76,9 @@ export const StateContextProvider = ({ children }: Props) => {
             connect,
             getCampaigns,
             createCampaign: publishCampaign,
-            getUserCampaigns
+            getUserCampaigns,
+            getDonations,
+            donate
         }}>
             {children}
         </StateContext.Provider>
