@@ -20,11 +20,5 @@
       icon: <BsFillMegaphoneFill  className="w-full h-full p-1"/>,
       link: '/create-campaign',
       title: 'CREATE CAMPAIGN'
-    },
-    {
-      name: 'profile',
-      icon: <BsPersonCircle  className="w-full h-full p-1"/>,
-      link: '/profile',
-      title: 'PROFILE'
-    },
+    }
   ];

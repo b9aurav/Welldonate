@@ -11,13 +11,14 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { SmartContract } from "@thirdweb-dev/react";
 import { StateContextType } from "../context/ContextTypes";
 import { isImageExists } from "../utils";
+import { FaWallet } from "react-icons/fa";
 
 type Props = {};
 
 const CreateCampaign = (props: Props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const { createCampaign } = useStateContext() as StateContextType;
+  const { createCampaign, address, connect } = useStateContext() as StateContextType;
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -87,6 +88,7 @@ const CreateCampaign = (props: Props) => {
             value={form.description}
             handleTextAreaChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleFormFieldChange('description', e)}
           ></FormField>
+          {address ?
           <div className="flex justify-end items-end">
             <PrimaryButton
               buttonType="submit"
@@ -94,7 +96,14 @@ const CreateCampaign = (props: Props) => {
               Icon={AiOutlinePlus}
               styles="bg-[#343A40]"
             ></PrimaryButton>
-          </div>
+          </div> : <div className="flex justify-end items-end">
+            <PrimaryButton
+              onClick={() => connect()}
+              title="CONNECT"
+              Icon={FaWallet}
+              styles="bg-[#343A40]"
+            ></PrimaryButton>
+          </div>}
         </form>
       </div>
     </HelmetProvider>

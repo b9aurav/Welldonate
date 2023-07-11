@@ -46,7 +46,8 @@ export const StateContextProvider = ({ children }: Props) => {
 
     const getUserCampaigns = async () => {
         const campaigns: any[] = await contract?.call('getCampaigns');
-        const filteredCampaigns: any[] = campaigns.filter((campaign) => campaign.owner === address)
+        const filteredCampaigns: any[] = campaigns.filter((campaign) => campaign.campaignCreator === address)
+        console.log(address);
         return filteredCampaigns;
     }
 

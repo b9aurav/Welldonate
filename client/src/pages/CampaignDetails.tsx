@@ -5,16 +5,17 @@ import { HelmetProvider, Helmet } from "react-helmet-async";
 import { useStateContext } from "../context";
 import { PrimaryButton, CountBox, Loader } from "../components";
 import { calculatePercentage } from "../utils";
-import { FaUserCircle } from "react-icons/fa";
-import { FcDonate } from "react-icons/fc"
+import { FaUserCircle, FaWallet } from "react-icons/fa";
+import { FcDonate } from "react-icons/fc";
 import { StateContextType } from "../context/ContextTypes";
 
 type Props = {};
 
 const CampaignDetails = (props: Props) => {
   const { state } = useLocation();
-  const navigate = useNavigate()
-  const { donate, getDonations, contract, address } = useStateContext() as StateContextType;
+  const navigate = useNavigate();
+  const { donate, getDonations, contract, address, connect } =
+    useStateContext() as StateContextType;
 
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState("");
@@ -23,7 +24,7 @@ const CampaignDetails = (props: Props) => {
   const fetchDonators = async () => {
     const data: any[] = await getDonations(state.campaignId);
     setDonators(data);
-  }
+  };
 
   useEffect(() => {
     if (contract) fetchDonators();
@@ -32,9 +33,9 @@ const CampaignDetails = (props: Props) => {
   const handleDonate = async () => {
     setIsLoading(true);
     await donate(state.campaignId, amount);
-    navigate('/');
+    navigate("/");
     setIsLoading(false);
-  }
+  };
 
   return (
     <div>
@@ -56,8 +57,18 @@ const CampaignDetails = (props: Props) => {
                   className="absolute h-full bg-[#343A40] rounded-[15px]"
                   style={{
                     width: `${calculatePercentage(
-                      Number.parseFloat(ethers.utils.formatUnits(ethers.BigNumber.from(state.fundraisingGoal), 18)),
-                      Number.parseFloat(ethers.utils.formatUnits(ethers.BigNumber.from(state.currentFundsRaised), 18))
+                      Number.parseFloat(
+                        ethers.utils.formatUnits(
+                          ethers.BigNumber.from(state.fundraisingGoal),
+                          18
+                        )
+                      ),
+                      Number.parseFloat(
+                        ethers.utils.formatUnits(
+                          ethers.BigNumber.from(state.currentFundsRaised),
+                          18
+                        )
+                      )
                     )}%`,
                     maxWidth: "100%",
                   }}
@@ -110,8 +121,7 @@ const CampaignDetails = (props: Props) => {
                   disabled
                   className="font-normal text-[16px] text-[#343A40] bg-[#DEE2E6] px-3 py-2 rounded-b-[10px]"
                   value={state.campaignDescription}
-                >
-                </textarea>
+                ></textarea>
               </div>
             </div>
           </div>
@@ -123,9 +133,16 @@ const CampaignDetails = (props: Props) => {
                 </h4>
                 <div className="font-normal text-[16px] text-[#343A40] bg-[#DEE2E6] px-3 py-2 rounded-b-[10px]">
                   {donators.length > 0 ? (
-                    donators.map((item, index) => <div key={`${item.donator}-${index}}`} className="flex justify-between items-center gap-4">
-                      <p className="font-normal leading-[26px] inline-block md:max-w-full md:overflow-visible text-[10px] md:text-[16px] lg:text-[18px] xl:text-[22px] sm:w-auto truncate">{index + 1}. {item.donator}</p>
-                    </div>)
+                    donators.map((item, index) => (
+                      <div
+                        key={`${item.donator}-${index}}`}
+                        className="flex justify-between items-center gap-4"
+                      >
+                        <p className="font-normal leading-[26px] inline-block md:max-w-full md:overflow-visible text-[10px] md:text-[16px] lg:text-[18px] xl:text-[22px] sm:w-auto truncate">
+                          {index + 1}. {item.donator}
+                        </p>
+                      </div>
+                    ))
                   ) : (
                     <p className="text-[14px] leading-[26px] text-justify">
                       No donators yet.
@@ -155,13 +172,22 @@ const CampaignDetails = (props: Props) => {
                       className="w-full p-[15px] outline-none border-[1px] border-[#343A40] bg-[#E9ECEF] text-[16px] rounded-[15px] text-[#495057]"
                     ></input>
                     <div className="mt-2 justify-center flex items-center">
-                    <PrimaryButton
-                      buttonType="submit"
-                      title="DONATE"
-                      Icon={FcDonate}
-                      onClick={handleDonate}
-                      styles="bg-[#343A40] pr-4"
-                    ></PrimaryButton>
+                      {address ? (
+                        <PrimaryButton
+                          buttonType="submit"
+                          title="DONATE"
+                          Icon={FcDonate}
+                          onClick={handleDonate}
+                          styles="bg-[#343A40] pr-4"
+                        ></PrimaryButton>
+                      ) : (
+                        <PrimaryButton
+                          onClick={() => connect()}
+                          title="CONNECT"
+                          Icon={FaWallet}
+                          styles="bg-[#343A40] pr-4"
+                        ></PrimaryButton>
+                      )}
                     </div>
                   </div>
                 </div>

@@ -18,7 +18,7 @@ const Navbar = (props: Props) => {
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
-      <div className="lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] shadow-lg bg-[#CED4DA] rounded-[15px]">
+      {/* <div className="lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] shadow-lg bg-[#CED4DA] rounded-[15px]">
         <input
           type="text"
           placeholder="Search Campaign"
@@ -29,9 +29,9 @@ const Navbar = (props: Props) => {
               Icon={BsSearch}
               styles="bg-[#343A40]"></PrimaryButton>
         </div>
-      </div>
+      </div> */}
 
-      <div className="sm:flex hidden flex-row justify-end gap-4">
+      <div className="sm:flex hidden flex-row justify-end gap-4 w-full">
         <PrimaryButton
           buttonType="button"
           title={address ? " CAMPAIGN" : "CONNECT"}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { navlinks } from "../constants/";
-import { BsBoxArrowInRight } from "react-icons/bs";
+import { BsBoxArrowInRight, BsPersonCircle } from "react-icons/bs";
 import { useStateContext } from "../context";
 import { StateContextType } from "../context/ContextTypes";
 
@@ -83,14 +83,27 @@ const Sidebar = (props: Props) => {
           ))}
         </div>
         {address && (
-          <MenuItem
-            styles="hover:bg-[#DEE2E6] transition ease-in-out duration-500"
-            name="logout"
-            title="Logout"
-            key={"/"}
-            onClick={() => logout()}
-            icon={<BsBoxArrowInRight className="w-full h-full p-1" />}
-          ></MenuItem>
+          <div>
+            <MenuItem
+              styles="hover:bg-[#DEE2E6] transition ease-in-out duration-500"
+              name="profile"
+              title="Profile"
+              key={"profile"}
+              onClick={() => {
+                setIsActive('profile');
+                navigate('/profile');
+              }}
+              icon={<BsPersonCircle className="w-full h-full p-1" />}
+            ></MenuItem>
+            <MenuItem
+              styles="hover:bg-[#DEE2E6] transition ease-in-out duration-500"
+              name="logout"
+              title="Logout"
+              key={"logout"}
+              onClick={() => logout()}
+              icon={<BsBoxArrowInRight className="w-full h-full p-1" />}
+            ></MenuItem>
+          </div>
         )}
       </div>
     </div>
