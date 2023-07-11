@@ -1,5 +1,5 @@
 import React, { useContext, createContext, ReactNode } from 'react'
-import { useAddress, useContract, useMetamask, useContractWrite, SmartContract } from '@thirdweb-dev/react'
+import { useAddress, useContract, useMetamask, useContractWrite, useDisconnect } from '@thirdweb-dev/react'
 import { BigNumber, ethers } from 'ethers'
 import { StateContextType, CampaignFormProp } from './ContextTypes';
 
@@ -14,7 +14,8 @@ export const StateContextProvider = ({ children }: Props) => {
     const { mutateAsync: createCampaign } = useContractWrite(contract, 'createCampaign');
     const address = useAddress();
     const connect = useMetamask();
-
+    const logout = useDisconnect()
+    
     const publishCampaign = async (form: CampaignFormProp) => {
         try {
             const data = await contract?.call("createCampaign", [
@@ -78,7 +79,8 @@ export const StateContextProvider = ({ children }: Props) => {
             createCampaign: publishCampaign,
             getUserCampaigns,
             getDonations,
-            donate
+            donate,
+            logout
         }}>
             {children}
         </StateContext.Provider>

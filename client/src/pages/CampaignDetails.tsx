@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { BigNumber, ethers } from "ethers";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import { useStateContext } from "../context";
@@ -13,6 +13,7 @@ type Props = {};
 
 const CampaignDetails = (props: Props) => {
   const { state } = useLocation();
+  const navigate = useNavigate()
   const { donate, getDonations, contract, address } = useStateContext() as StateContextType;
 
   const [isLoading, setIsLoading] = useState(false);
@@ -31,6 +32,7 @@ const CampaignDetails = (props: Props) => {
   const handleDonate = async () => {
     setIsLoading(true);
     await donate(state.campaignId, amount);
+    navigate('/');
     setIsLoading(false);
   }
 

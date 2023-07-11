@@ -22,20 +22,6 @@
       title: 'CREATE CAMPAIGN'
     },
     {
-      name: 'payment',
-      icon: <BsCashStack  className="w-full h-full p-1"/>,
-      link: '/',
-      title: 'PAYMENT',
-      disabled: true,
-    },
-    {
-      name: 'withdraw',
-      icon: <BsFillPrinterFill  className="w-full h-full p-1"/>,
-      link: '/',
-      title: 'WITHDRAW',
-      disabled: true,
-    },
-    {
       name: 'profile',
       icon: <BsPersonCircle  className="w-full h-full p-1"/>,
       link: '/profile',

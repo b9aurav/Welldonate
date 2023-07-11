@@ -1,4 +1,4 @@
-import { SmartContract, useMetamask } from "@thirdweb-dev/react"
+import { SmartContract } from "@thirdweb-dev/react"
 import { MetaMaskWallet } from "@thirdweb-dev/wallets";
 import { ethers } from "ethers"
 
@@ -18,6 +18,7 @@ interface StateContextType {
     readonly getUserCampaigns: () => Promise<any[]>,
     readonly getDonations: (pID: any) => Promise<any[]>
     readonly donate: (pID: any, amount: any) => Promise<any[]>
+    readonly logout: () => Promise<void>
 };
 
 export type { CampaignFormProp, StateContextType }
