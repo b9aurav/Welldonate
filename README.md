@@ -5,11 +5,11 @@
 [Live Demo](https://welldonate.netlify.app/)
 
 ## Description
-Web3Crowdfunding is a decentralized crowdfunding platform built on the Ethereum blockchain. It leverages the power of Web3 technologies to provide a transparent, secure, and efficient way for individuals and organizations to raise funds for their projects, campaigns, and causes. 
+Welldonate is a decentralized crowdfunding platform built on the Ethereum blockchain. It leverages the power of Web3 technologies to provide a transparent, secure, and efficient way for individuals and organizations to raise funds for their projects, campaigns, and causes. 
 
-With Web3Crowdfunding, you can create and manage your own crowdfunding campaigns, set fundraising goals, and accept donations in cryptocurrencies such as ETH. Backers can contribute to campaigns directly from their crypto wallets, ensuring a seamless and trustless experience.
+With Welldonate, you can create and manage your own crowdfunding campaigns, set fundraising goals, and accept donations in cryptocurrencies such as ETH. Backers can contribute to campaigns directly from their crypto wallets, ensuring a seamless experience.
 
-This project aims to revolutionize the traditional crowdfunding model by eliminating intermediaries, reducing fees, and providing global accessibility. By embracing the decentralized nature of blockchain, Web3Crowdfunding empowers both creators and backers, enabling them to participate in impactful projects and initiatives across various industries.
+This project aims to revolutionize the traditional crowdfunding model by eliminating intermediaries, reducing fees, and providing global accessibility. By embracing the decentralized nature of blockchain, Welldonate empowers both creators and backers, enabling them to participate in impactful projects and initiatives across various industries.
 
 ## Features
 - Create and manage crowdfunding campaigns
