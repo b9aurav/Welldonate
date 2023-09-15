@@ -1,4 +1,4 @@
-# Project Name: Web3Crowdfunding
+# Welldonate
 
 ![Logo](imgs/logo.png)
 
